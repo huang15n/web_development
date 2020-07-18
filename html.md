@@ -24,8 +24,8 @@ The element: The opening tag, the closing tag and the content together compris
 The HTML head is the contents of the <head> element — unlike the contents of the <body> element (which are displayed on the page when loaded in a browser), the head's content is not displayed on the page. Instead, the head's job is to contain metadata about the document.
 
 ### Adding a title 
-We've already seen the <title> element in action — this can be used to add a title to the document. This however can get confused with the <h1> element, which is used to add a top level heading to your body content — this is also sometimes referred to as the page title. But they are different things!
-The <h1> element appears on the page when loaded in the browser — generally this should be used once per page, to mark up the title of your page content (the story title, or news headline, or whatever is appropriate to your usage.)
+We've already seen the <title> element in action — this can be used to add a title to the document. This however can get confused with the element, which is used to add a top level heading to your body content — this is also sometimes referred to as the page title. But they are different things!
+The python \< h1 \> element appears on the page when loaded in the browser — generally this should be used once per page, to mark up the title of your page content (the story title, or news headline, or whatever is appropriate to your usage.)
 The <title> element is metadata that represents the title of the overall HTML document (not the document's content.)
 
 
