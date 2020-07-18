@@ -606,7 +606,7 @@ The error messages are usually helpful, but sometimes they are not so helpful; w
 
 
 
-Basic sections of a document
+### Basic sections of a document
 Webpages can and will look pretty different from one another, but they all tend to share similar standard components, unless the page is displaying a fullscreen video or game, is part of some kind of art project, or is just badly structured:
 
 header:
