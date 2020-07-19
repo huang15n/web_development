@@ -429,3 +429,320 @@ same name.
 ■ Variables created inside functions are local to the function and cease to exist when the function terminates.
 
 
+The arrays $_GET and $_POST and some other special variables have their own scope rules. They are known as superglobals and can be seen everywhere, both inside and outside functions.
+The complete list of superglobals is as follows:
+■ $GLOBALS—An array of all global variables (Like the global keyword, this allows you to
+access global variables inside a function—for example, as $GLOBALS['myvariable'].)
+■ $_SERVER—An array of server environment variables
+■ $_GET—An array of variables passed to the script via the GET method
+■ $_POST—An array of variables passed to the script via the POST method
+■ $_COOKIE—An array of cookie variables
+■ $_FILES—An array of variables related to file uploads
+■ $_ENV—An array of environment variables
+■ $_REQUEST—An array of all user input including the contents of input including $_GET, $_POST, and $_COOKIE (but not including $_FILES)
+■ $_SESSION—An array of session variables
+
+
+
+### Using Operators
+
+
+Operators are symbols that you can use to manipulate values and variable by performing an operation on them 
+
+In general, operators can take one, two, or three arguments, with the majority taking two 
+the = symbol and an exprssion on the right side
+these arguments are called operands -- that is, the things that are being operated upon 
+
+
+### Arithmetic Operators
+Arithmetic operators are straightforward; they are just the normal mathematical operators.
+
+Operator
++ - * / %
+
+
+
+Addition and subtraction work as you would expect. The result of these operators is to add or subtract, respectively, the values stored in the $a and $b variables.
+
+
+Multiplication and division also work much as you would expect. Note the use of the asterisk as the multiplication operator rather than the regular multiplication symbol, and the forward slash as the division operator rather than the regular division symbol.
+
+The modulus operator returns the remainder calculated by dividing the $a variable by the $b variable. 
+
+
+You should note that arithmetic operators are usually applied to integers or doubles. If you apply them to strings, PHP will try to convert the string to a number. If it contains an e or
+an E, it will be read as being in scientific notation and converted to a float; otherwise, it will be converted to an integer. PHP will look for digits at the start of the string and use them as the value; if there are none, the value of the string will be zero.
+
+
+
+
+### String Operators
+
+You’ve already seen and used the only string operator. You can use the string concatenation operator to add two strings and to generate and store a result much as you would use the addition operator to add two numbers
+
+
+### Assignment Operators
+
+You’ve already seen the basic assignment operator (=). Always refer to this as the assignment operator and read it as “is set to.”
+
+
+
+### Values Returned from Assignment
+
+Using the assignment operator returns an overall value similar to other operators. When working out the value of an expression, you can use parentheses to increase the precedence of a subexpression, as shown here. 
+
+
+### Combined Assignment Operators
+In addition to the simple assignment, there is a set of combined assignment operators. Each of them is a shorthand way of performing another operation on a variable and assigning the result back to that variable. 
+$a += 5;
+This is equivalent to writing
+$a = $a + 5;
+
+Combined assignment operators exist for each of the arithmetic operators and for the string concatenation operator. 
+
+PHP’s Combined Assignment Operators
++=
+-=
+*=
+/=
+%=
+.=
+
+
+
+### Pre- and Post-Increment and Decrement
+
+The pre- and post-increment (++) and decrement (--) operators are similar to the += and -= operators, but with a couple of twists.
+All the increment operators have two effects: They increment and assign a value.
+
+
+As you can probably guess, the behavior is similar for the -- (decrement) operator. However, the value of $a is decremented instead of being incremented.
+
+
+### Reference Operator
+
+The reference operator (&, an ampersand) can be used in conjunction with assignment. Normally, when one variable is assigned to another, a copy is made of the first variable and stored elsewhere in memory. 
+```PHP
+<?php 
+
+$variable_only = 4;
+$reference = &$variable_only;
+$reference = 10;
+
+echo $variable_only;
+
+?> 
+
+```
+References can be a bit tricky. Remember that a reference is like an alias rather than like a pointer. Both $a and $b point to the same piece of memory. 
+
+You can change this by unsetting one of them as follows:
+unset($a);
+Unsetting does not change the value of $b (7) but does break the link between $a and
+
+
+### Comparison Operators
+The comparison operators compare two values. Expressions using these operators return either of the logical values true or false depending on the result of the comparison.
+The Equal Operator
+The equal comparison operator (==, two equal signs) enables you to test whether two values are equal. For example, you might use the expression
+$a == $b
+to test whether the values stored in $a and $b are the same. The result returned by this
+expression is true if they are equal or false if they are not.
+
+You might easily confuse == with =, the assignment operator. Using the wrong operator will work without giving an error but generally will not give you the result you wanted. In general, nonzero values evaluate to true and zero values to false. 
+
+### Other Comparison Operators
+PHP also supports a number of other comparison operators. A summary of all the comparison operators. One to note is the identical operator (===), which returns true only if the two operands are both equal and of the same type.
+
+==
+===
+!=
+!==
+<>
+< > <= >=
+
+### Logical Operators
+
+The logical operators combine the results of logical conditions. 
+
+PHP supports logical AND, OR, XOR (exclusive or), and NOT.
+The set of logical operators and their use is summarized in Table 1.4.
+
+! NOT && AND
+|| OR and AND
+or OR xor XOR
+Use
+!$b
+$a && $b
+$a || $b
+$a and $b $a or $b $a x or $b
+
+The and and or operators have lower precedence than the && and || operators. 
+
+
+
+
+### Bitwise Operators
+
+The bitwise operators enable you to treat an integer as the series of bits used to represent it. You probably will not find a lot of use for the bitwise operators in PHP,
+
+& | ~
+^
+<< >>
+PHP’s Bitwise Operators
+ Name
+Bitwise AND Bitwise OR Bitwise NOT
+Bitwise XOR
+Left shift Right shift
+Use
+$a & $b $a | $b ~$a
+$a ^ $b
+$a << $b $a >> $b
+
+
+
+### Other Operators
+In addition to the operators we have covered so far, you can use several others.
+The comma operator (,) separates function arguments and other lists of items. It is normally used incidentally.
+
+
+
+Two special operators, new and ->, are used to instantiate a class and access class members, respectively. 
+
+
+### The Ternary Operator
+
+The ternary operator (?:) takes the following form: condition ? value if true : value if false
+This operator is similar to the expression version of an if-else statement
+
+```PHP
+<?php 
+
+$variable = 100;
+
+echo ($variable > 10 ? 200 : 500 );
+
+?> 
+```
+
+
+### The Error Suppression Operator
+The error suppression operator (@) can be used in front of any expression—that is, anything that generates or has a value.
+
+
+Without the @ operator, this line generates a divide-by-zero warning. With the operator
+included, the error is suppressed.
+If you are suppressing warnings in this way, you need to write some error handling code to check when a warning has occurred. If you have PHP set up with the track_errors feature enabled in php.ini, the error message will be stored in the global variable $php_errormsg.
+
+
+### The Execution Operator
+The execution operator is really a pair of operators—a pair of backticks (``) in fact. The backtick is not a single quotation mark; it is usually located on the same key as the ~ (tilde) symbol on your keyboard.
+PHP attempts to execute whatever is contained between the backticks as a command at the server’s command line. The value of the expression is the output of the command.
+For example, under Unix-like operating systems
+
+<?php 
+
+echo `ls -al`;
+?> 
+
+
+
+### Array Operators
+
+There are a number of array operators. The array element operators ([]) enable you to access array elements. You can also use the => operator in some array contexts.
+
++ == === != <> !==
+
+### The Type Operator
+
+There is one type operator: instanceof. This operator is used in object-oriented programming, but we mention it here for completeness.
+
+
+The instanceof operator allows you to check whether an object is an instance of a particular class
+
+
+
+```PHP
+<!DOCTYPE html> <html>
+<head>
+<title>Bob's Auto Parts - Order Results</title>
+</head> <body>
+<h1>Bob's Auto Parts</h1>
+<h2>Order Results</h2> </body>
+
+<?php 
+
+$tireqty = $_POST['tireqty'];
+$oilqty = $_POST["oilqty"];
+$sparkqty = $_POST["sparkqty"];
+
+define('TIRE_PRICE',10);
+define('OIL_PRICE',20);
+define('SPARK_PRICE',10);
+
+echo $tireqty;
+echo $oilqty;
+echo $sparkqty;
+
+echo '<p>Order Processed at ';
+echo date("H:i, jS F Y");
+echo "</p>";
+
+echo '<table><tr><td>Name</td><td>Quantity</td><td>Total</td></tr>';
+echo '<tr><td>Tire</td><td>'.$tireqty.'</td><td>'.TIRE_PRICE * $tireqty.'</td></tr>';
+
+echo '<tr><td>Oil</td><td>'.$oilqty.'</td><td>'.OIL_PRICE * $oilqty.'</td></tr>';
+
+
+echo '<tr><td>Spark</td><td>'.$sparkqty.'</td><td>'.SPARK_PRICE * $oilqty.'</td></tr>';
+
+
+echo '</table>';
+
+$tax_rate = 0.13;
+$subtotal = ($tireqty * TIRE_PRICE + $oilqty * OIL_PRICE + $sparkqty * SPARK_PRICE) * (1 + $tax_rate);
+echo "subtotal:".number_format($subtotal,2);
+
+?>
+
+</html>
+```
+
+It also uses the number_format() function to format the totals as strings with two decimal places. This is a function from PHP’s Math library.
+
+
+
+# Understanding Precedence and Associativity
+
+
+In general, operators have a set of precednence, or order, in which they are evalauted. 
+operators also have associativity, which is the order in which operators of the same precedence are evalauted 
+this order is generally left to right called left for short, right to left called right for short, or not relevant 
+
+
+
+
+Also note one other operator in this table we have not yet covered: the print language construct, which is equivalent to echo. Both constructs generate output. but you can use print if you find it more readable. Neither print nor echo is really a function, but both can be called as a function with parameters in parentheses. Both can also be treated as an operator: You simply place the string to work with after the keyword echo or print.
+
+
+
+### Using Variable Handling Functions
+
+
+
+Testing and Setting Variable Types
+Most of the variable functions are related to testing the type of function. The two most general are gettype() and settype(). They have the following function prototypes; that is, this is what arguments expect and what they return:
+string gettype(mixed var);
+bool settype(mixed var, string type);
+
+
+
+To use gettype(), you pass it a variable. It determines the type and returns a string containing the type name: bool, int, double (for floats, confusingly, for historical reasons), string, array, object, resource, or NULL. It returns unknown type if it is not one of the standard types.
+To use settype(), you pass it a variable for which you want to change the type and a string containing the new type for that variable from the previous list.
+
+
+
+
+
+
+
