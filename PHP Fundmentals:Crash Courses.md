@@ -73,6 +73,7 @@ You should consider adopting a coding standard for field names so that all field
 
 Embedding PHP in HTML
 
+```PHP
 ------ orderform.php ------
 
 <form action="processorder.php" method="post"> <table style="border: 0px;">
@@ -94,12 +95,13 @@ maxlength="3" /></td> </tr>
 <tr>
 	<td colspan="2" style="text-align: center;"><input type="submit" value="Submit Order" /></td>
 </tr> </table> </form>
+```
 
 
 _________________
 
 
-
+```PHP
 ------ processorder.php ------
 <!DOCTYPE html> <html>
 <head>
@@ -115,6 +117,8 @@ echo 'Order Processed';
 
 </html>
 --------------------------------
+```
+
 
 none of the raw php is visiblae because the interpreter has run through the script and replaced it with the output from the script 
 this means that from PHP you can produce clean HTML viewable with any browser
@@ -174,7 +178,7 @@ adding dynamic comment
 the main reason for using a server side scripting lnaguage is to be ave to provide dynamic ocntent to a site's users 
 this is an important application because content tha changes according to user's needs or over time will keep visotrs coing back to a site 
 
-
+```PHP
 <!DOCTYPE html> <html>
 <head>
 <title>Bob's Auto Parts - Order Results</title>
@@ -190,6 +194,7 @@ echo "</p>";
 ?>
 
 </html>
+```
 
 ### Calling functions 
 this is general form that function calls take 
@@ -409,13 +414,18 @@ This function provides a list of PHP’s predefined variables and constants, amo
 
 The term scope refers to the places within a script where a particular variable is visible. The six basic scope rules in PHP are as follows:
 ■ Built-in superglobal variables are visible everywhere within a script.
+
 ■ Constants, once declared, are always visible globally; that is, they can be used inside
 and outside functions.
+
 ■ Global variables declared in a script are visible throughout that script, but not inside
 functions.
+
 ■ Variables inside functions that are declared as global refer to the global variables of the
 same name.
-■ Variables created inside functions and declared as static are invisible from outside the function but keep their value between one execution of the function and the next. (We explain this idea fully in Chapter 5.)
+
+■ Variables created inside functions and declared as static are invisible from outside the function but keep their value between one execution of the function and the next.  
+
 ■ Variables created inside functions are local to the function and cease to exist when the function terminates.
 
 
