@@ -730,15 +730,262 @@ Also note one other operator in this table we have not yet covered: the print la
 
 
 
-Testing and Setting Variable Types
+### Testing and Setting Variable Types
 Most of the variable functions are related to testing the type of function. The two most general are gettype() and settype(). They have the following function prototypes; that is, this is what arguments expect and what they return:
 string gettype(mixed var);
 bool settype(mixed var, string type);
 
+```PHP
+<?php 
+
+$variable = 1.23;
+
+echo "the type of this variable is ".$variable.'<br/>';
+
+echo "I want to set the type of this variable to integer:";
+
+settype($a, 'integer');
+echo "the type of this ariable now is ".gettype($variable).'<br />';
+
+?> 
+
+
+```
 
 
 To use gettype(), you pass it a variable. It determines the type and returns a string containing the type name: bool, int, double (for floats, confusingly, for historical reasons), string, array, object, resource, or NULL. It returns unknown type if it is not one of the standard types.
 To use settype(), you pass it a variable for which you want to change the type and a string containing the new type for that variable from the previous list.
+
+
+PHP also provides some specific type-testing functions. Each takes a variable as an argument and returns either true or false. The functions are
+■ is_array()—Checks whether the variable is an array
+■ is_double(), is_float(), is_real() (All the same function)—Checks whether
+the variable is a float
+■ is_long(), is_int(), is_integer() (All the same function)—Checks whether the variable is an integer
+■ is_string()—Checks whether the variable is a string
+■ is_bool()—Checks whether the variable is a boolean
+■ is_object()—Checks whether the variable is an object
+■ is_resource()—Checks whether the variable is a resource
+■ is_null()—Checks whether the variable is null
+■ is_scalar()—Checks whether the variable is a scalar—that is, an integer, boolean, string, or float
+■ is_numeric()—Checks whether the variable is any kind of number or a numeric string
+■ is_callable()—Checks whether the variable is the name of a valid function
+
+
+
+
+### Testing Variable Status
+
+PHP has several functions for testing the status of a variable.
+the first is isset(), , which has the following prototype:
+bool isset(mixed var[, mixed var[,...]])
+
+
+This function takes a variable name as an argument and returns true if it exists and false otherwise. You can also pass in a comma-separated list of variables, and isset() will return true if all the variables are set.
+
+
+You can wipe a variable out of existence by using its companion function, unset(), which has the following prototype:
+void unset(mixed var[, mixed var[,...]])
+
+
+This function gets rid of the variable it is passed.
+The empty() function checks to see whether a variable exists and has a nonempty, nonzero value; it returns true or false accordingly. It has the following prototype:
+bool empty(mixed var)
+
+
+```PHP
+<?php 
+
+$variable = 1.23;
+
+
+
+echo 'isset($variable):'.isset($variable).'<br/>';
+echo 'isset($nonething):'.isset($nothing).'<br/>';
+echo 'empty($variable)'.isset($variable).'<br/>';
+
+?> 
+```
+ should return 1 (true) from isset() regardless of what value you entered in that form field and regardless of whether you entered a value at all. Whether it is empty() depends on what you entered in it.
+
+
+### Reinterpreting Variables
+You can achieve the equivalent of casting a variable by calling a function. The following three functions can be useful for this task:
+int intval(mixed var[, int base=10]) float floatval(mixed var)
+string strval(mixed var)
+Each accepts a variable as input and returns the variable’s value converted to the appropriate type. The intval() function also allows you to specify the base for conversion when the variable to be converted is a string. (This way, you can convert, for example, hexadecimal strings to integers.)
+
+
+
+### Making Decisions with Conditionals
+
+Control structures are the structures within a language that allow you to control the flow of execution through a program or script. You can group them into conditional (or branching) structures and repetition structures (or loops).
+
+
+
+### if Statements
+you should give the if statement a condition to use 
+if the condition is true, the following block of the code will be executed 
+conditions in if statements must be surrounded by parentheses () 
+### Code Blocks 
+Often you may have more than one statement you want executed according to the actions of a conditional statement such as if. You can group a number of statements together as a block. To declare a block, you enclose it in curly braces
+
+
+
+PHP does not care how you lay out your code. However, you should indent your code for readability purposes. Indenting is used to enable you to see at a glance which lines will be executed only if conditions are met, which statements are grouped into blocks, and which statements are parts of loops or functions. In the previous examples, you can see that the statement depending on the if statement and the statements making up the block are indented.
+
+
+
+
+
+### else Statements
+
+You may often need to decide not only whether you want an action performed, but also which
+of a set of possible actions you want performed.
+An else statement allows you to define an alternative action to be taken when the condition in an if statement is false. Say you want to warn Bob’s customers when they do not order anything. On the other hand, if they do make an order, instead of a warning, you want to show them what they ordered.
+
+
+If you rearrange the code and add an else statement, you can display either a warning or a summary:
+```PHP
+<?php 
+
+
+$variable = 10;
+
+if($variable >= 0){
+	print 'this is greater than 10';
+}else{
+	print 'this is not greater than 10';
+}
+
+?> 
+```
+
+
+### elseif Statements
+
+For many of the decisions you make, you have more than two options. You can create a sequence of many options using the elseif statement, which is a combination of an else and an if statement. When you provide a sequence of conditions, the program can check each until it finds one that is true.
+
+
+Note that you are free to type elseif or else if—versions with or without a space are both correct.
+
+### switch Statements
+
+The switch statement works in a similar way to the if statement, but it allows the condition to take more than two values. In an if statement, the condition can be either true or false. In a switch statement, the condition can take any number of different values, as long as it evaluates to a simple type (integer, string, or float). You need to provide a case statement to handle each value you want to react to and, optionally, a default case to handle any that you do not provide a specific case statement for.
+
+The switch statement behaves somewhat differently from an if or elseif statement. An if statement affects only one statement unless you deliberately use curly braces to create a block of statements. A switch statement behaves in the opposite way. When a case statement in
+a switch is activated, PHP executes statements until it reaches a break statement. Without break statements, a switch would execute all the code following the case that was true. When a break statement is reached, the next line of code after the switch statement is executed.
+
+You should try to use whichever conditional will be most readable in your situation. You will acquire a feel for which suits different situations as you gain experience.
+
+
+
+### while Loops
+The simplest kind of loop in PHP is the while loop. Like an if statement, it relies on a condition. The difference between a while loop and an if statement is that an if statement executes the code that follows it only once if the condition is true. A while loop executes the block repeatedly for as long as the condition is true.
+You generally use a while loop when you don’t know how many iterations will be required to make the condition true. If you require a fixed number of iterations, consider using a for loop.
+The basic structure of a while loop is while( condition ) expression;
+
+To make the HTML generated by the script readable, you need to include newlines and spaces. As already mentioned, browsers ignore this whitespace, but it is important for human readers.
+```PHP 
+<?php 
+
+
+$counter = 0;
+while($counter < 100){
+	print $counter;
+	$counter += 1;
+	echo "<br/>";
+}
+
+?> 
+
+
+```
+
+
+### for and foreach Loops
+
+The way that you used the while loops in the preceding section is very common. You set a counter to begin with. Before each iteration, you test the counter in a condition. And at the end of each iteration, you modify the counter.
+
+
+You can write this style of loop in a more compact form by using a for loop. The basic structure of a for loop is
+for( expression1; condition; expression2) expression3;
+■ expression1 is executed once at the start. Here, you usually set the initial value of a counter.
+■ The condition expression is tested before each iteration. If the expression returns false, iteration stops. Here, you usually test the counter against a limit.
+■ expression2 is executed at the end of each iteration. Here, you usually adjust the value of the counter.
+■ expression3 is executed once per iteration. This expression is usually a block of code and contains the bulk of the loop code.
+
+```PHP
+<?php 
+echo "<table>";
+for ($counter = 0; $counter <= 100; $counter++){
+	echo "<tr><td>".$counter."</td></tr>";
+}
+echo "</table>";
+
+?> 
+```
+
+
+Both the while and for versions are functionally identical. The for loop is somewhat more
+compact, saving two lines.
+Both these loop types are equivalent; neither is better or worse than the other. In a given situation, you can use whichever you find more intuitive.
+
+
+
+By dynamically creating the names of the variables, you can access each of the fields in turn.As well as the for loop, there is a foreach loop, designed specifically for use with arrays.
+
+
+### do...while Loops
+The final loop type we describe behaves slightly differently. The general structure of
+a do...while statement is
+do expression;
+while( condition );
+A do...while loop differs from a while loop because the condition is tested at the end. This means that in a do...while loop, the statement or block within the loop is always executed at least once.
+Even if you consider this example in which the condition will be false at the start and can never become true, the loop will be executed once before checking the condition and ending
+
+
+
+
+### Breaking Out of a Control Structure or Script
+
+If you want to stop executing a piece of code, you can choose from three approaches, depending on the effect you are trying to achieve.
+If you want to stop executing a loop, you can use the break statement as previously discussed in the section on switch. If you use the break statement in a loop, execution of the script will continue at the next line of the script after the loop.
+If you want to jump to the next loop iteration, you can instead use the continue statement.
+
+
+
+
+
+
+### Employing Alternative Control Structure Syntax
+
+
+
+For all the control structures we have looked at, there is an alternative form of syntax.
+It consists of replacing the opening brace ({) with a colon (:) and the closing brace with a new keyword, which will be endif, endswitch, endwhile, endfor, or endforeach, depending on which control structure is being used. No alternative syntax is available for do...while loops
+
+
+
+### Using declare
+One other control structure in PHP, the declare structure, is not used as frequently in day-to-
+day coding as the other constructs. The general form of this control structure is as follows:
+declare (directive) {
+// block
+}
+This structure is used to set execution directives for the block of code—that is, rules about how the following code is to be run. Currently, only two execution directives, ticks and encoding, have been implemented.
+
+
+You use ticks by inserting the directive ticks=n. It allows you to run a specific function every n lines of code inside the code block, which is principally useful for profiling and debugging.
+The encoding directive is used to set encoding for a particular script, as follows:
+declare(encoding='UTF-8');
+
+
+
+
+
+
+
 
 
 
